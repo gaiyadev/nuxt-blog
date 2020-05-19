@@ -113,6 +113,11 @@ export default {
         href: '/'
       },
       {
+        title: 'Blog',
+        icon: 'home',
+        href: '/posts'
+      },
+      {
         title: 'Login',
         icon: 'perm_identity',
         href: '/login'
@@ -121,6 +126,11 @@ export default {
         title: 'Register',
         icon: 'supervisor_account',
         href: '/register'
+      },
+      {
+        title: 'Admins',
+        icon: 'supervisor_account',
+        href: '/admins'
       }
     ]
   }),
@@ -143,5 +153,6 @@ body {
   padding: 0px;
 }
 html {
-font-family: 'Lato', sans-serif;}
+  font-family: 'Lato', sans-serif;
+}
 </style>
