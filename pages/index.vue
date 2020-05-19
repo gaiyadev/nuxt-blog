@@ -1,17 +1,17 @@
 <template>
-  <v-container>
-    <h1>all post</h1>
-  </v-container>
+  <div>
+    <no-ssr>
+      <Home />
+    </no-ssr>
+  </div>
 </template>
 
 <script>
-// import Logo from '~/components/Logo.vue'
-// import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import Home from '~/components/Home.vue'
 
 export default {
-  // components: {
-  //   Logo,
-  //   VuetifyLogo
-  // }
+  components: {
+    Home
+  }
 }
 </script>
