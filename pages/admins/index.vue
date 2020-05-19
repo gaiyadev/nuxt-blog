@@ -8,19 +8,21 @@
     <v-row>
       <v-col cols="12" md="10" sm="12">
         <h2 class="mb-3 purple--text text-uppercase" color="purple--text">Post title</h2>
-        <v-img src="https://cdn.vuetifyjs.com/images/carousel/sky.jpg" height="400">
-          <v-row align="end" wrap class="lightbox white--text pa-2 fill-height">
-            <v-col>
-              <div class="subheading float-left">
-                post title
+        <nuxt-link :to="'/admins/' + 3 ">
+          <v-img src="https://cdn.vuetifyjs.com/images/carousel/sky.jpg" height="400">
+            <v-row align="end" wrap class="lightbox white--text pa-2 fill-height">
+              <v-col>
+                <div class="subheading float-left">
+                  post title
+                  <br />
+                  <span>2020-2-12</span>
+                  <br />
+                </div>
                 <br />
-                <span>2020-2-12</span>
-                <br />
-              </div>
-              <br />
-            </v-col>
-          </v-row>
-        </v-img>
+              </v-col>
+            </v-row>
+          </v-img>
+        </nuxt-link>
         <h4 class="font-weight-black mt-4">
           post date
           <span class="primary--text">Admin</span>

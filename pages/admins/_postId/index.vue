@@ -1,3 +1,13 @@
 <template>
-    <h1>Post Id page</h1>
+  <div class="mt-n12">
+    <EditPost />
+  </div>
 </template>
+<script>
+import EditPost from '~/components/EditPost'
+export default {
+  components: {
+    EditPost
+  }
+}
+</script>
