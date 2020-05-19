@@ -137,3 +137,11 @@ export default {
   }
 }
 </script>
+<style >
+body {
+  margin: 0px;
+  padding: 0px;
+}
+html {
+font-family: 'Lato', sans-serif;}
+</style>
