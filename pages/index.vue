@@ -2,7 +2,7 @@
   <no-ssr>
     <v-container fluid>
       <v-row>
-        <v-col cols="12" md="4" sm="4" v-for="post in postImages" :key="post.id">
+        <v-col cols="12" md="4" sm="4" v-for="post in loadedPosts" :key="post.id">
           <v-card>
             <nuxt-link :to="'posts/' + post.id">
               <v-img :src="post.imageURL" height="400">
@@ -85,43 +85,18 @@
 </template>
 <script>
 export default {
-  asyncData(context) {
-    return new Promise((resolve, rejected) => {
-      setTimeout(() => {
-        resolve({
-          postImages: [
-            {
-              id: 1,
-              title: 'first Post',
-              imageURL: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-              date: '2020-1-5',
-              content: 'post one content'
-            },
-            {
-              id: 2,
-              title: 'second Post',
-              imageURL: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-              date: '2020-1-15',
-              content: 'post two content'
-            },
-            {
-              id: 3,
-              title: 'thrid Post',
-              imageURL: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-              date: '2020-1-25',
-              content: 'post three content'
-            }
-          ]
-        })
-      }, 1500)
-    })
-      .then((data) => {
-        return data
-      })
-      .catch((e) => {
-        context.error(new Error())
-      })
+  // fetch(context) {
+
+  // },
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts
+    }
   }
+
+  // created() {
+  //   this.$store.dispatch('setPosts', this.postImages)
+  // }
 }
 </script>
 
