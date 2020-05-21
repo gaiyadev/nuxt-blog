@@ -111,6 +111,8 @@
 </template>
 
 <script>
+const axios = require('axios')
+
 export default {
   data() {
     return {
@@ -143,11 +145,11 @@ export default {
       ],
       imageURL: [],
       imageRules: [
-        (v) => !!v || 'Post image is required',
-        (v) =>
-          !v ||
-          (v && v.size < 2000000) ||
-          'Image size should be less than 2 MB!'
+        (v) => !!v || 'Post image is required'
+        // (v) =>
+        //   !v ||
+        //   (v && v.size < 2000000) ||
+        //   'Image size should be less than 2 MB!'
       ]
     }
   },
@@ -155,6 +157,22 @@ export default {
   methods: {
     validate() {
       this.$refs.form.validate()
+    },
+    onCreatePost() {
+      axios
+        .post('https://nuxt-blog-186be.firebaseio.com/posts.json', {
+          title: this.title,
+          author: this.author,
+          description: this.description,
+          image: this.imageURL,
+          date: this.date
+        })
+        .then(function(data) {
+          console.log(data)
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
     }
   },
   mounted() {}
