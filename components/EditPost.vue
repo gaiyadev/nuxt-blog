@@ -10,7 +10,7 @@
           <h2 class="purple--text text-uppercase">{{ title }}</h2>
           <v-divider color="purple" class="mt-2"></v-divider>
           <v-form
-            @submit.prevent="onCreatePost"
+            @submit.prevent="onEditPost"
             ref="form"
             class="mt-10 mb-6 pr-8 pl-8 pb-8 pt-4"
             v-model="valid"
@@ -111,6 +111,7 @@
 </template>
 
 <script>
+const axios = require('axios')
 export default {
   data() {
     return {
@@ -122,6 +123,7 @@ export default {
       show1: false,
       show2: false,
       image: null,
+      id: this.$route.params.postId,
       post: '',
       titleRules: [
         (v) => !!v || 'Title is required',
@@ -143,11 +145,11 @@ export default {
       ],
       imageURL: [],
       imageRules: [
-        (v) => !!v || 'Post image is required',
-        (v) =>
-          !v ||
-          (v && v.size < 2000000) ||
-          'Image size should be less than 2 MB!'
+        (v) => !!v || 'Post image is required'
+        // (v) =>
+        //   !v ||
+        //   (v && v.size < 2000000) ||
+        //   'Image size should be less than 2 MB!'
       ]
     }
   },
@@ -155,9 +157,41 @@ export default {
   methods: {
     validate() {
       this.$refs.form.validate()
+    },
+    onEditPost() {
+      axios
+        .put(
+          'https://nuxt-blog-186be.firebaseio.com/posts/' + this.id + '.json',
+          {
+            title: this.post,
+            author: this.author,
+            imageURL: this.imageURL,
+            description: this.description,
+            date: this.date
+          }
+        )
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((e) => {
+          context.error(e)
+        })
     }
   },
-  mounted() {}
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts
+    },
+    posts() {
+      return this.$store.getters.loadedPostId(this.id)
+    }
+  },
+  created() {
+    ;(this.post = this.posts.title),
+      (this.author = this.posts.author),
+      (this.imageURL = this.posts.imageURL),
+      (this.description = this.posts.description)
+  }
 }
 </script>
 

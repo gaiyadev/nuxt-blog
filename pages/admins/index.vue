@@ -5,17 +5,19 @@
         <v-btn color="primary" @click="CreatePage" class="white--text">Create Post</v-btn>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-for="post in loadedPosts" :key="post.id">
       <v-col cols="12" md="10" sm="12">
-        <h2 class="mb-3 purple--text text-uppercase" color="purple--text">Post title</h2>
+        <h2 class="mb-3 purple--text text-uppercase" color="purple--text">{{ post.title}}</h2>
         <nuxt-link :to="'/admins/' + 3 ">
-          <v-img src="https://cdn.vuetifyjs.com/images/carousel/sky.jpg" height="400">
+          <v-img :src="post.imageURL" height="400">
             <v-row align="end" wrap class="lightbox white--text pa-2 fill-height">
               <v-col>
                 <div class="subheading float-left">
-                  post title
+                  <nuxt-link :to=" 'admins/' + post.id ">
+                    <v-btn color="primary large">Edit</v-btn>
+                  </nuxt-link>
                   <br />
-                  <span>2020-2-12</span>
+                  <span></span>
                   <br />
                 </div>
                 <br />
@@ -24,8 +26,8 @@
           </v-img>
         </nuxt-link>
         <h4 class="font-weight-black mt-4">
-          post date
-          <span class="primary--text">Admin</span>
+          {{ post.date}}
+          <span class="primary--text">{{post.author}}</span>
         </h4>
 
         <p
@@ -46,6 +48,11 @@ export default {
   methods: {
     CreatePage() {
       this.$router.push('/admins/new_post/')
+    }
+  },
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts
     }
   }
 }

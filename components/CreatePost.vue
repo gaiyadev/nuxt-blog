@@ -161,7 +161,7 @@ export default {
     onCreatePost() {
       axios
         .post('https://nuxt-blog-186be.firebaseio.com/posts.json', {
-          title: this.title,
+          title: this.post,
           author: this.author,
           description: this.description,
           imageURL: this.imageURL,
@@ -174,8 +174,7 @@ export default {
           console.log(error)
         })
     }
-  },
-  mounted() {}
+  }
 }
 </script>
 
