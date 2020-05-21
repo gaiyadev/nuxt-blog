@@ -159,20 +159,34 @@ export default {
       this.$refs.form.validate()
     },
     onCreatePost() {
-      axios
-        .post('https://nuxt-blog-186be.firebaseio.com/posts.json', {
+      this.$store
+        .dispatch('addPost', {
           title: this.post,
           author: this.author,
           description: this.description,
           imageURL: this.imageURL,
           date: this.date
         })
-        .then(function(data) {
-          console.log(data)
+        .then(() => {
+          this.$router.push('/admins')
         })
-        .catch(function(error) {
-          console.log(error)
+        .catch((e) => {
+          console.log(e)
         })
+      // axios
+      //   .post('https://nuxt-blog-186be.firebaseio.com/posts.json', {
+      //     title: this.post,
+      //     author: this.author,
+      //     description: this.description,
+      //     imageURL: this.imageURL,
+      //     date: this.date
+      //   })
+      //   .then(function(data) {
+      //     console.log(data)
+      //   })
+      //   .catch(function(error) {
+      //     console.log(error)
+      //   })
     }
   }
 }

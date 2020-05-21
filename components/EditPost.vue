@@ -172,6 +172,7 @@ export default {
         )
         .then((res) => {
           console.log(res)
+          this.$router.push('admins')
         })
         .catch((e) => {
           context.error(e)
