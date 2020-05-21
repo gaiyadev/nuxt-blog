@@ -10,40 +10,10 @@ const createStore = () => {
         },
         mutations: {
             setPosts(state, post) {
-                state.loadedPosts.push(post);
-            },
-            addPost(state, post) {
-                state.loadedPosts = post
-            },
-            editPost(state, editedPost) {
-                const postIndex = state.loadedPosts.findIndex(post =>
-                    post.id === editedPost.id);
-                state.loadedPosts[postIndex] = editedPost;
-
+                state.loadedPosts = post;
             }
         },
         actions: {
-            addPost(vuexContext, posts) {
-                const postData = {
-                    title: posts.title,
-                    description: posts.description,
-                    date: posts.date,
-                    author: posts.author,
-                    imageURL: posts.imageURL
-                };
-                return axios
-                    .post('https://nuxt-blog-186be.firebaseio.com/posts.json', postData)
-                    .then(function (res) {
-                        vuexContext.commit('addPost', { ...postData, id: res.data.id });
-                        console.log(res)
-                    })
-                    .catch(function (error) {
-                        console.log(error)
-                    })
-            },
-            editPost(vuexContext, editedPost) { },
-
-
             nuxtServerInit(vuexContext, context) {
                 return axios.get('https://nuxt-blog-186be.firebaseio.com/posts.json').then(res => {
                     const postArray = [];

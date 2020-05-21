@@ -4,9 +4,9 @@
     <v-row>
       <v-col cols="12" md="10" sm="12">
         <h2 class="mb-3 purple--text text-uppercase" color="purple--text">{{ loadedPost.title }}</h2>
-        <!-- <v-img :src="blogPost.imageURL" elevation="4" class="ml-n6 mr-n12"></v-img> -->
+        <v-img :src="loadedPost.imageURL" elevation="4" class="ml-n6 mr-n12"></v-img>
         <h4 class="font-weight-black mt-4">
-          {{loadedPost.date}}
+          {{loadedPost.date }}
           <span class="primary--text">Admin</span>
         </h4>
 
@@ -24,7 +24,7 @@ export default {
     return axios
       .get(
         'https://nuxt-blog-186be.firebaseio.com/posts/' +
-          context.params.id +
+          context.route.params.id +
           '.json'
       )
       .then((res) => {

@@ -172,7 +172,7 @@ export default {
         )
         .then((res) => {
           console.log(res)
-          this.$router.push('admins')
+          this.$router.push('/admins')
         })
         .catch((e) => {
           context.error(e)
@@ -196,47 +196,3 @@ export default {
 }
 </script>
 
-<style scoped>
-.custom-loader {
-  /* animation: loader 1s infinite; */
-  display: flex;
-}
-@-moz-keyframes loader {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes loader {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@-o-keyframes loader {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes loader {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.avatar {
-  vertical-align: middle;
-  width: 200px;
-  /* height: 50px; */
-  border-radius: 50%;
-}
-</style>

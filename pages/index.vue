@@ -92,11 +92,12 @@ export default {
     loadedPosts() {
       return this.$store.getters.loadedPosts
     }
-  }
+  },
 
-  // created() {
-  //   this.$store.dispatch('setPosts', this.postImages)
-  // }
+  created() {
+    //this.loadedPosts
+    // this.$store.dispatch('setPosts', this.postImages)
+  }
 }
 </script>
 

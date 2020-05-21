@@ -159,80 +159,36 @@ export default {
       this.$refs.form.validate()
     },
     onCreatePost() {
-      this.$store
-        .dispatch('addPost', {
+      axios
+        .post('https://nuxt-blog-186be.firebaseio.com/posts.json', {
           title: this.post,
           author: this.author,
           description: this.description,
           imageURL: this.imageURL,
           date: this.date
         })
-        .then(() => {
-          this.$router.push('/admins')
+        .then(function(data) {
+          console.log(data)
         })
-        .catch((e) => {
-          console.log(e)
+        .catch(function(error) {
+          console.log(error)
         })
-      // axios
-      //   .post('https://nuxt-blog-186be.firebaseio.com/posts.json', {
-      //     title: this.post,
-      //     author: this.author,
-      //     description: this.description,
-      //     imageURL: this.imageURL,
-      //     date: this.date
-      //   })
-      //   .then(function(data) {
-      //     console.log(data)
-      //   })
-      //   .catch(function(error) {
-      //     console.log(error)
-      //   })
     }
   }
 }
+// this.$store
+//   .dispatch('addPost', {
+//     title: this.post,
+//     author: this.author,
+//     description: this.description,
+//     imageURL: this.imageURL,
+//     date: this.date
+//   })
+//   .then(() => {
+//     this.$router.push('/admins')
+//   })
+//   .catch((e) => {
+//     console.log(e)
+//   })
 </script>
 
-<style scoped>
-.custom-loader {
-  /* animation: loader 1s infinite; */
-  display: flex;
-}
-@-moz-keyframes loader {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes loader {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@-o-keyframes loader {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes loader {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.avatar {
-  vertical-align: middle;
-  width: 200px;
-  /* height: 50px; */
-  border-radius: 50%;
-}
-</style>
