@@ -164,7 +164,7 @@ export default {
           title: this.title,
           author: this.author,
           description: this.description,
-          image: this.imageURL,
+          imageURL: this.imageURL,
           date: this.date
         })
         .then(function(data) {

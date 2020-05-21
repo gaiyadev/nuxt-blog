@@ -17,27 +17,23 @@
   </v-container>
 </template>
 <script>
+const axios = require('axios')
+
 export default {
   asyncData(context) {
-    return new Promise((resolve, rejected) => {
-      setTimeout(() => {
-        resolve({
-          loadedPost: {
-            id: 1,
-            title: 'Now a single Post (ID: " ' + context.params.id + ')',
-            imageURL: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-            date: '2020-1-5',
-            content:
-              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda incidunt sit adipisci aliquid facere dolorem quidem nihil deleniti corporis, ea iusto quasi corrupti eius debitis quisquam, hic accusamus totam pariatur.'
-          }
-        })
-      }, 1000)
-    })
-      .then((data) => {
-        return data
+    return axios
+      .get(
+        'https://nuxt-blog-186be.firebaseio.com/posts/' +
+          context.params.id +
+          '.json'
+      )
+      .then((res) => {
+        return {
+          loadedPost: res.data
+        }
       })
       .catch((e) => {
-        context.error(new Error())
+        context.error(e)
       })
   }
 }
