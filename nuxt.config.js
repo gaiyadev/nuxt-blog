@@ -27,8 +27,14 @@ export default {
   },
   /*
    ** Customize the progress-bar color
+  false to disable
    */
-  loading: { color: '#fff' },
+  loading: { color: '#fff', height: '4px', duration: 5000 },
+  loadingIndicator: {
+    color: '#fa923f',
+    name: 'circle'
+  },
+
   /*
    ** Global CSS
    */
